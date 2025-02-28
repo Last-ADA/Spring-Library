@@ -74,7 +74,7 @@ public class AutorController {
     @DeleteMapping("/{autorId}")
     public ResponseEntity<?> deleteAutor(@PathVariable Long autorId) {
         autorService.deleteById(autorId);
-        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+        return ResponseEntity.noContent().build();
     }
 
 }
