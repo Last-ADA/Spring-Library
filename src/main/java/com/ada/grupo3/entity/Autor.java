@@ -23,7 +23,7 @@ public class Autor {
     @Id
     @GeneratedValue
     private Long id;
-    private String name;
+    private String nome;
     private LocalDate dataNascimento;
     private String email;
 
