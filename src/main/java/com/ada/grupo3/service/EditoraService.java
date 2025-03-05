@@ -48,4 +48,9 @@ public class EditoraService {
     public void deleteByCnpj(String cnpj) {
         editoraRepository.deleteById(cnpj);
     }
+
+    public List<EditoraDetailsResponseDTO> findByNome(String nome) {
+        var editoras = editoraRepository.findByNomeIgnoreCaseContaining(nome);
+        return editoraMapper.entityToResponseList(editoras);
+    }
 }

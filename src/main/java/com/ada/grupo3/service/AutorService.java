@@ -49,4 +49,9 @@ public class AutorService {
     public void deleteById(Long id) {
         autorRepository.deleteById(id);
     }
+
+    public List<AutorDetailsResponseDTO> listByNome(String nome) {
+        var autores = autorRepository.findByNomeIgnoreCaseContaining(nome);
+        return autorMapper.entityToResponseList(autores);
+    }
 }

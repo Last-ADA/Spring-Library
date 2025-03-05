@@ -23,11 +23,16 @@ public class EditoraController {
         this.editoraService = editoraService;
     }
 
-    @Operation(summary = "Retorna todas as editoras", description = "Retorna todas as editoras")
+    @Operation(summary = "Retorna editoras baseado no nome", description = "Retorna as editoras que contém o nome providenciado. Caso o nome não seja providenciado, retorna todas as editoras.")
     @ApiResponse(responseCode = "200", description = "Operação realizada com sucesso")
     @GetMapping
-    public ResponseEntity<List<EditoraDetailsResponseDTO>> findAll() {
-        var editoras = editoraService.findAll();
+    public ResponseEntity<List<EditoraDetailsResponseDTO>> findByNome(@RequestParam(required = false) String nome) {
+        List<EditoraDetailsResponseDTO> editoras;
+        if (nome != null) {
+            editoras = editoraService.findByNome(nome);
+        } else {
+            editoras = editoraService.findAll();
+        }
         return ResponseEntity.ok(editoras);
     }
 

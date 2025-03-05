@@ -35,13 +35,20 @@ public class AutorController {
         return ResponseEntity.ok(autorDTO);
     }
 
-    @Operation(summary = "Retorna todos os autores", description = "Retorna todos os autores")
+    @Operation(summary = "Retorna uma lista de autores baseado no nome", description = "Retorna todos os autores que contém o nome providenciado. Caso nenhum nome seja providenciado, retorna todos os autores.")
     @ApiResponse(responseCode = "200", description = "Operação realizada com sucesso")
     @GetMapping
-    public ResponseEntity<List<AutorDetailsResponseDTO>> listAllAutores() {
-        var autoresDTO = autorService.listAll();
+    public ResponseEntity<List<AutorDetailsResponseDTO>> listAutoresByNome(@RequestParam(required = false) String nome) {
+        List<AutorDetailsResponseDTO> autoresDTO;
+        if (nome != null) {
+            autoresDTO = autorService.listByNome(nome);
+        } else {
+            autoresDTO = autorService.listAll();
+        }
         return ResponseEntity.ok(autoresDTO);
     }
+
+
 
     @Operation(summary = "Cria um novo autor", description = "Cria um novo autor com as informações passadas no DTO")
     @ApiResponses(value = {
