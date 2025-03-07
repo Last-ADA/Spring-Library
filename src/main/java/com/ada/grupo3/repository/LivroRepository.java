@@ -15,4 +15,8 @@ public interface LivroRepository extends JpaRepository<Livro, String> {
 
     List<Livro> findByDisponivel(Boolean disponivel);
 
+    List<Livro> findByCategoriasNomeIgnoreCase(String categoriaNome);
+
+
+
 }

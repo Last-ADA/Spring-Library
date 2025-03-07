@@ -25,7 +25,7 @@ public class Autor {
     private LocalDate dataNascimento;
     private String email;
 
-    @OneToMany
+    @OneToMany(mappedBy = "autor")
     private List<Livro> livros;
     //private List<Livro> livros = new ArrayList<>(); // testar no futuro se a inserção de novos livros não reinicializa a lista
 

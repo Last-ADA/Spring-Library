@@ -29,7 +29,8 @@ public class LivroController {
     public ResponseEntity<List<LivroDetailsResponseDTO>> multiParamSearch(@RequestParam(required = false) String titulo,
                                                                           @RequestParam(required = false) String autorNome,
                                                                           @RequestParam(required = false) String editoraNome,
-                                                                          @RequestParam(required = false) Boolean disponivel) {
+                                                                          @RequestParam(required = false) Boolean disponivel,
+                                                                          @RequestParam(required = false) String categoria) {
         List<LivroDetailsResponseDTO> livros = livroService.listAll();
         if (titulo != null) {
             livros.retainAll(livroService.findByTitulo(titulo));
@@ -42,6 +43,9 @@ public class LivroController {
         }
         if (disponivel != null) {
             livros.retainAll(livroService.findByDisponivel(disponivel));
+        }
+        if (categoria != null) {
+            livros.retainAll(livroService.findByCategoria(categoria));
         }
         return ResponseEntity.ok(livros);
     }

@@ -20,6 +20,6 @@ public class Editora {
     private String telefone;
     private String email;
 
-    @OneToMany
+    @OneToMany(mappedBy = "editora")
     private List<Livro> livros;
 }
